@@ -33,6 +33,12 @@ public class Spacer: UIView {
         completion?(self)
     }
     
+    public init(frame: CGRect) {
+        super.init(frame: frame)
+        self.width = frame.width
+        self.height = frame.height
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
