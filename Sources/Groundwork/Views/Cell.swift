@@ -17,6 +17,7 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
         clipsToBounds = false
         preservesSuperviewLayoutMargins = true
         contentView.preservesSuperviewLayoutMargins = true
+        customView.preservesSuperviewLayoutMargins = true
         
         contentView.addSubview(customView)
         customView.snp.makeConstraints {
