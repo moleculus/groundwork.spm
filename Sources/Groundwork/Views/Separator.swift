@@ -14,6 +14,10 @@ public class Separator: UIView {
     
     // MARK: - Initialization.
             
+    init() {
+        super.init(frame: .zero)
+    }
+    
     @available(*, unavailable, message: "Loading this view from a nib is unsupported")
     public required init?(coder: NSCoder) {
         fatalError("Loading this view from a nib is unsupported")
