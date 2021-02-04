@@ -29,7 +29,7 @@ extension UIColor {
         }
     }
     
-    public static func text(_ textColor: TintColor) -> UIColor {
+    public static func text(_ textColor: TextColor) -> UIColor {
         return UIColor { (traitCollection) -> UIColor in
             switch traitCollection.userInterfaceStyle {
             case .dark:
@@ -40,7 +40,7 @@ extension UIColor {
         }
     }
     
-    public static func border(_ borderColor: TintColor) -> UIColor {
+    public static func border(_ borderColor: BorderColor) -> UIColor {
         return UIColor { (traitCollection) -> UIColor in
             switch traitCollection.userInterfaceStyle {
             case .dark:
@@ -51,7 +51,7 @@ extension UIColor {
         }
     }
     
-    public static func system(_ systemColor: TintColor) -> UIColor {
+    public static func system(_ systemColor: SystemColor) -> UIColor {
         return UIColor { (traitCollection) -> UIColor in
             switch traitCollection.userInterfaceStyle {
             case .dark:
