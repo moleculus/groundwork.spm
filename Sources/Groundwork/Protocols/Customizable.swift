@@ -11,6 +11,18 @@ extension Customizable {
             view.preservesSuperviewLayoutMargins = true
         }
         
+        if let view = self as? UIScrollView {
+            view.preservesSuperviewLayoutMargins = true
+        }
+        
+        if let view = self as? UITableView {
+            view.preservesSuperviewLayoutMargins = true
+        }
+        
+        if let view = self as? UIScrollView {
+            view.preservesSuperviewLayoutMargins = true
+        }
+        
         completion(self)
         return self
     }
