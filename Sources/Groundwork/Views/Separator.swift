@@ -1,6 +1,6 @@
 import UIKit
 
-public class Divider: UIView {
+public class Separator: UIView {
     
     // MARK: - Computed Properties.
     
@@ -14,7 +14,7 @@ public class Divider: UIView {
     
     // MARK: - Initialization.
             
-    init() {
+    public init() {
         super.init(frame: .zero)
     }
     
