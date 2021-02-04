@@ -7,18 +7,13 @@ public protocol Customizable {
 
 extension Customizable {
     public func then(_ completion: (Self) -> Void) -> Self {
+        if let view = self as? UIView {
+            view.preservesSuperviewLayoutMargins = true
+        }
+        
         completion(self)
         return self
     }
 }
 
 extension NSObject: Customizable {}
-
-extension UIView {
-    public func then(_ completion: (Self) -> Void) -> Self {
-        preservesSuperviewLayoutMargins = true
-        backgroundColor = .clear
-        completion(self)
-        return self
-    }
-}
