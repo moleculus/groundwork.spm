@@ -13,11 +13,3 @@ extension Customizable {
 }
 
 extension NSObject: Customizable {}
-
-let view = UIView(frame: .zero).then {
-    $0.backgroundColor = .red
-}
-
-let label = UILabel(frame: .zero).then {
-    $0.textColor = .red
-}
