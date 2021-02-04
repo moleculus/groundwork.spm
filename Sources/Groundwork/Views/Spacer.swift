@@ -33,10 +33,10 @@ public class Spacer: UIView {
         completion?(self)
     }
     
-    public init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init(frame: CGRect) {
         self.width = frame.width
         self.height = frame.height
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
