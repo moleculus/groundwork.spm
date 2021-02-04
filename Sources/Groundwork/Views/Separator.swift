@@ -1,6 +1,6 @@
 import UIKit
 
-public class Separator: UIView {
+public class Divider: UIView {
     
     // MARK: - Computed Properties.
     
