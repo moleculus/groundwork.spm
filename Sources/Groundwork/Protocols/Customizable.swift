@@ -1,22 +1,23 @@
 import UIKit
 
 public protocol Customizable {
-    associatedtype Object: NSObject
-    func then(_ completion: (Object) -> Void) -> Object
+    associatedtype T
+    func then(_ completion: (T) -> Void) -> T
 }
 
-extension Customizable where Self: NSObject {
+extension Customizable {
     public func then(_ completion: (Self) -> Void) -> Self {
         completion(self)
         return self
     }
 }
 
-extension UIView: Customizable {
-    public func then(_ completion: (UIView) -> Void) -> UIView {
-        backgroundColor = .clear
-        preservesSuperviewLayoutMargins = true
-        completion(self)
-        return self
-    }
+extension NSObject: Customizable {}
+
+let view = UIView(frame: .zero).then {
+    $0.backgroundColor = .red
+}
+
+let label = UILabel(frame: .zero).then {
+    $0.textColor = .red
 }
