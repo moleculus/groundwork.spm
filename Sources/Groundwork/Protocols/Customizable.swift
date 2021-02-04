@@ -13,3 +13,12 @@ extension Customizable {
 }
 
 extension NSObject: Customizable {}
+
+extension UIView {
+    public func then(_ completion: (Self) -> Void) -> Self {
+        preservesSuperviewLayoutMargins = true
+        backgroundColor = .clear
+        completion(self)
+        return self
+    }
+}
