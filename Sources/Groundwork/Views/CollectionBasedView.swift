@@ -1,6 +1,6 @@
 import UIKit
 
-public class CollectionBasedView: UIView {
+open class CollectionBasedView: UIView {
     
     // MARK: - UI Properties.
     
