@@ -19,8 +19,7 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         contentView.preservesSuperviewLayoutMargins = true
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         customView.preservesSuperviewLayoutMargins = true
         customView.translatesAutoresizingMaskIntoConstraints = false
         
