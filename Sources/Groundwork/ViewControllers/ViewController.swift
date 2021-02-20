@@ -4,7 +4,7 @@ open class ViewController<UI: UIView>: UIViewController {
     
     // MARK: - UI Properties.
     
-    open var ui = UI(frame: .zero)
+    public let ui = UI(frame: .zero)
         
     // MARK: - Computed Properties.
     
