@@ -1,6 +1,6 @@
 import UIKit
 
-open class CollectionViewController<Section: Groundwork.Section>: ViewController<CollectionBasedView>, UICollectionViewDataSource {
+open class CollectionViewController<Section: Groundwork.Section>: ViewController<CollectionBasedView>, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties.
     
@@ -11,9 +11,10 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     public init() {
         super.init()
         ui.collectionView.dataSource = self
+        ui.collectionView.delegate = self
     }
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource.
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
@@ -26,5 +27,11 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
     }
-        
+    
+    // MARK: - UICollectionViewDelegate.
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return sections[indexPath.section].sizeForItemAt(at: indexPath, in: collectionView)
+    }
+    
 }
