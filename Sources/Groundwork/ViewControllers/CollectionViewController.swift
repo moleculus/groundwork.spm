@@ -28,6 +28,22 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
+        let size = sections[indexPath.section].sizeForItemAt(at: indexPath, in: collectionView)
+        
+        switch size.width {
+        case .absolute (let width):
+            cell.widthAnchor.constraint(equalToConstant: width).isActive = true
+        case .flexible:
+            cell.widthAnchor.constraint(equalToConstant: 0).isActive = false
+        }
+
+        switch size.height {
+        case .absolute (let height):
+            cell.heightAnchor.constraint(equalToConstant: height).isActive = true
+        case .flexible:
+            cell.heightAnchor.constraint(equalToConstant: 0).isActive = false
+        }
+        
         return cell
     }
         
