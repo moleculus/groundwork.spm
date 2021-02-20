@@ -30,6 +30,10 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     
     // MARK: - UICollectionViewDelegate.
     
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
+    
+    // MARK: - UICollectionViewDelegateFlowLayout.
+    
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return sections[indexPath.section].sizeForItemAt(at: indexPath, in: collectionView)
     }
