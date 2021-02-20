@@ -27,9 +27,16 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("HELLPO")
-        let cell = sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView) as! Cell
-        cell.size = sections[indexPath.section].sizeForItemAt(at: indexPath, in: collectionView)
+        let cell = sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
+        
+        if let cell = cell as? Cell {
+            cell.size = sections[indexPath.section].sizeForItemAt(at: indexPath, in: collectionView)
+            print("TRUE")
+        }
+        else {
+            print("FALSE")
+        }
+        
         return cell
     }
         
