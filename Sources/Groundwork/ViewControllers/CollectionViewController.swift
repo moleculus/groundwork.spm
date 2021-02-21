@@ -6,10 +6,20 @@ open class CollectionViewController<Section: Groundwork.Section>: ViewController
     
     public var sections: [Section] = []
         
+    // MARK: - Computed Properties.
+    
+    private var collectionViewLayout: UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout(sectionProvider: { (section, _) -> NSCollectionLayoutSection? in
+            let section = self.sections[section]
+            return section.layoutSection(for: self.ui.collectionView)
+        })
+    }
+    
     // MARK: - Initialization.
     
     public init() {
         super.init()
+        ui.collectionView.collectionViewLayout = collectionViewLayout
         ui.collectionView.dataSource = self
     }
     
