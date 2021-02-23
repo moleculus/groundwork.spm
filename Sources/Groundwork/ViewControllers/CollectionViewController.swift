@@ -1,6 +1,6 @@
 import UIKit
 
-open class CollectionViewController<Section: Groundwork.Section>: ViewController<CollectionBasedView>, UICollectionViewDataSource {
+open class CollectionViewController<View: CollectionBasedView, Section: Groundwork.Section>: ViewController<View>, UICollectionViewDataSource {
     
     // MARK: - Properties.
     
