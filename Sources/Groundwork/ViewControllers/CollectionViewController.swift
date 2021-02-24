@@ -5,6 +5,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     // MARK: - Properties.
     
     public var sections: [Section] = []
+    private var minYForSafeArea: CGFloat = 0
         
     // MARK: - Computed Properties.
     
@@ -23,6 +24,13 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
         ui.collectionView.dataSource = self
     }
     
+    // MARK: - Lifecycle.
+    
+    open override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        self.minYForSafeArea = min(-ui.safeAreaInsets.top, minYForSafeArea)
+    }
+    
     // MARK: - UICollectionViewDataSource.
     
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -37,4 +45,10 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
         return sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
     }
     
+}
+
+extension CollectionViewController: ScrollsToTop {
+    func scrollToTop(animated: Bool) {
+        ui.collectionView.setContentOffset(CGPoint(x: 0, y: minYForSafeArea), animated: animated)
+    }
 }
