@@ -5,7 +5,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     // MARK: - Properties.
     
     public var sections: [Section] = []
-    private var minYForSafeArea: CGFloat = 0
+    private var biggestTopSafeAreaInset: CGFloat = 0
         
     // MARK: - Computed Properties.
     
@@ -28,7 +28,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     
     open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        self.minYForSafeArea = min(-ui.safeAreaInsets.top, minYForSafeArea)
+        self.biggestTopSafeAreaInset = max(ui.safeAreaInsets.top, biggestTopSafeAreaInset)
     }
     
     // MARK: - UICollectionViewDataSource.
@@ -49,6 +49,6 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
 
 extension CollectionViewController: ScrollsToTop {
     func scrollToTop(animated: Bool) {
-        ui.collectionView.setContentOffset(CGPoint(x: 0, y: minYForSafeArea), animated: animated)
+        ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
 }
