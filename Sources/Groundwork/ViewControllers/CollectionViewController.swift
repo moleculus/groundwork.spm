@@ -48,7 +48,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
 }
 
 extension CollectionViewController: ScrollsToTop {
-    func scrollToTop(animated: Bool) {
+    public func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
 }
