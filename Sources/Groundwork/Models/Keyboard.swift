@@ -7,7 +7,7 @@ public struct Keyboard {
     public let state: State
     public let frame: CGRect
 
-    init?(notification: Notification) {
+    public init?(notification: Notification) {
         guard
             let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
             let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
@@ -21,7 +21,7 @@ public struct Keyboard {
         self.state = State(height: height)
     }
 
-    func isSufficientlyDifferent(fromKeyboard keyboard: Keyboard?) -> Bool {
+    public func isSufficientlyDifferent(fromKeyboard keyboard: Keyboard?) -> Bool {
         guard let keyboard = keyboard else {
             return true
         }
@@ -34,12 +34,12 @@ public struct Keyboard {
     }
 }
 
-public extension Keyboard {
-    enum State {
+extension Keyboard {
+    public enum State {
         case up
         case down
 
-        init(height: CGFloat) {
+        public init(height: CGFloat) {
             self = height < 100 ? .down : .up
         }
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-class KeyboardTracker {
+public class KeyboardTracker {
 
     // MARK: - Properties.
 
@@ -26,7 +26,7 @@ class KeyboardTracker {
     
     // MARK: - Public Methods.
 
-    func trackChanges(then completion: @escaping (_ keyboard: Keyboard, _ isFirstChange: Bool) -> Void) {
+    public func trackChanges(then completion: @escaping (_ keyboard: Keyboard, _ isFirstChange: Bool) -> Void) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidChange), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidChange), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidChange), name: UIResponder.keyboardWillHideNotification, object: nil)
