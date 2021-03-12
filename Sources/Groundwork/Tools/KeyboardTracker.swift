@@ -24,6 +24,10 @@ public class KeyboardTracker {
         }
     }
     
+    // MARK: - Initialization.
+    
+    public init() {}
+    
     // MARK: - Public Methods.
 
     public func trackChanges(then completion: @escaping (_ keyboard: Keyboard, _ isFirstChange: Bool) -> Void) {
