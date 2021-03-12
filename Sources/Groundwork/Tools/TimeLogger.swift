@@ -18,6 +18,10 @@ public class TimeLogger {
         }
     }
     
+    // MARK: - Initialization.
+    
+    public init() {}
+    
     // MARK: - Public Methods.
     
     public func logTime(message: String = "") {
