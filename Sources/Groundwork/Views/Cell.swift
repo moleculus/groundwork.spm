@@ -35,7 +35,15 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
     
     public override func prepareForReuse() {
         super.prepareForReuse()
-        customView.prepareForReuse()
+        prepareViewForReuse(contentView)
+    }
+    
+    // MARK: - Private Methods.
+    
+    private func prepareViewForReuse(_ view: UIView) {
+        for subview in view.subviews {
+            prepareViewForReuse(subview)
+        }
     }
             
 }
