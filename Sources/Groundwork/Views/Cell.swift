@@ -42,6 +42,7 @@ public class Cell<CustomView>: UICollectionViewCell where CustomView: UIView {
     
     private func prepareViewForReuse(_ view: UIView) {
         for subview in view.subviews {
+            subview.prepareForReuse()
             prepareViewForReuse(subview)
         }
     }
