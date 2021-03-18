@@ -9,7 +9,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
         
     // MARK: - Computed Properties.
     
-    private var collectionViewLayout: UICollectionViewLayout {
+    open var collectionViewLayout: UICollectionViewLayout {
         return UICollectionViewCompositionalLayout(sectionProvider: { (section, _) -> NSCollectionLayoutSection? in
             let section = self.sections[section]
             return section.layoutSection(for: self.ui.collectionView)
@@ -48,7 +48,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
 }
 
 extension CollectionViewController: ScrollsToTop {
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
 }
