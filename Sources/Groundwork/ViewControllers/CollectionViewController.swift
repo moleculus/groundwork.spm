@@ -1,6 +1,6 @@
 import UIKit
 
-open class CollectionViewController<View: CollectionBasedView, Section: Groundwork.Section>: ViewController<View>, UICollectionViewDataSource {
+open class CollectionViewController<View: CollectionBasedView, Section: Groundwork.Section>: ViewController<View>, UICollectionViewDataSource, ScrollsToTop {
     
     // MARK: - Properties.
     
@@ -45,10 +45,10 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
         return sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
     }
     
-}
-
-extension CollectionViewController: ScrollsToTop {
+    // MARK: - ScrollsToTop.
+    
     open func scrollToTop(animated: Bool) {
         ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
     }
+    
 }
