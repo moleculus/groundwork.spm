@@ -5,7 +5,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     // MARK: - Properties.
     
     public var sections: [Section] = []
-    private var biggestTopSafeAreaInset: CGFloat = 0
+    public var biggestTopSafeAreaInset: CGFloat = 0
         
     // MARK: - Computed Properties.
     
