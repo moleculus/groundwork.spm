@@ -14,7 +14,10 @@ public class TimeLogger {
             let start = stamps[count - 2]
             let end = stamps[count - 1]
             
-            print(end.date.timeIntervalSince1970 - start.date.timeIntervalSince1970, end.message)
+            let interval = end.date.timeIntervalSince1970 - start.date.timeIntervalSince1970
+            let formattedInterval = String(format: "%.5f", interval)
+            
+            print(formattedInterval, end.message)
         }
     }
     
