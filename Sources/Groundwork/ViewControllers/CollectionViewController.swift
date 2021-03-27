@@ -9,8 +9,8 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
         
     // MARK: - Computed Properties.
     
-    private var collectionViewLayout: UICollectionViewLayout {
-        return UICollectionViewCompositionalLayout(sectionProvider: { (section, _) -> NSCollectionLayoutSection? in
+    open var collectionViewLayout: UICollectionViewLayout {
+        let layout =  UICollectionViewCompositionalLayout(sectionProvider: { (section, _) -> NSCollectionLayoutSection? in
             let section = self.sections[section]
             let layoutSection = section.layoutSection(for: self.ui.collectionView)
             
@@ -20,6 +20,8 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
             
             return layoutSection
         })
+        
+        return layout
     }
         
     // MARK: - Initialization.
