@@ -4,7 +4,7 @@ public protocol Section {
     func numberOfItems(in collectionView: UICollectionView) -> Int
     func sizeForItemAt(in collectionView: UICollectionView) -> NSCollectionLayoutSize
     func itemInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
-    func sectionInset(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
+    func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
     func cellForItemAt(at indexPath: IndexPath, in collectionView: UICollectionView) -> UICollectionViewCell
     func decorationItems() -> [NSCollectionLayoutDecorationItem]
     func scrollDirection(in collectionView: UICollectionView) -> UICollectionView.ScrollDirection
