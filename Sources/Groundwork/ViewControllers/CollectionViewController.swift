@@ -10,12 +10,14 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     // MARK: - Computed Properties.
     
     open var collectionViewLayout: UICollectionViewLayout {
-        let layout =  UICollectionViewCompositionalLayout(sectionProvider: { (section, _) -> NSCollectionLayoutSection? in
+        let layout =  UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (section, _) -> NSCollectionLayoutSection? in
+            guard let self = self else { return nil }
+            
             let section = self.sections[section]
             let layoutSection = section.layoutSection(for: self.ui.collectionView)
             
-            layoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, contentOffset, environment) in
-                self?.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
+            layoutSection.visibleItemsInvalidationHandler = { (visibleItems, contentOffset, environment) in
+                self.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
             }
             
             return layoutSection
