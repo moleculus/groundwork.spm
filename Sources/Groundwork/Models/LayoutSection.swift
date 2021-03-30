@@ -1,6 +1,12 @@
 import UIKit
 
-open class LayoutSection {
+public protocol ReusableViewDataSource {
+    associatedtype UI: UIView
+}
+
+open class LayoutSection: ReusableViewDataSource {
+    
+    public typealias UI = UIView
     
     // MARK: - Properties.
     
@@ -17,7 +23,13 @@ open class LayoutSection {
     }
 
     open func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError("Subclasses must provide their own implementation of this method")
+        collectionView.dequeue(reusableView: UI.self, for: indexPath) { [weak self] in
+            self?.render(ui: $0, at: indexPath)
+        }
+    }
+    
+    open func render(ui: UI, at indexPath: IndexPath) {
+        
     }
     
     open func scrollDirection(collectionView: UICollectionView) -> UICollectionView.ScrollDirection {
