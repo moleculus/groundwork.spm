@@ -4,8 +4,8 @@ open class LayoutSection {
     
     // MARK: - Properties.
     
-    public var decorationItems: [NSCollectionLayoutDecorationItem] = []
-    
+    public var backgroundColor: UIColor = .clear
+        
     // MARK: - Initialization.
     
     public init() {}
@@ -50,10 +50,14 @@ open class LayoutSection {
         )
     }
     
+    open func decorationItems(collectionView: UICollectionView) -> [NSCollectionLayoutDecorationItem] {
+        return []
+    }
+    
     open func layoutSection(collectionView: UICollectionView) -> NSCollectionLayoutSection {
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup(collectionView: collectionView))
         layoutSection.contentInsets = sectionInsets(collectionView: collectionView)
-        layoutSection.decorationItems = decorationItems
+        layoutSection.decorationItems = decorationItems(collectionView: collectionView)
         
         switch scrollDirection(collectionView: collectionView) {
         case .horizontal:
