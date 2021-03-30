@@ -1,10 +1,10 @@
 import UIKit
 
-open class CollectionViewController<View: CollectionBasedView, Section: Groundwork.Section>: ViewController<View>, UICollectionViewDataSource, ScrollsToTop {
+open class CollectionViewController<View: CollectionBasedView>: ViewController<View>, UICollectionViewDataSource, ScrollsToTop {
     
     // MARK: - Properties.
     
-    public var sections: [Section] = []
+    public var sections: [LayoutSection] = []
     public var biggestTopSafeAreaInset: CGFloat = 0
         
     // MARK: - Computed Properties.
@@ -14,7 +14,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
             guard let self = self else { return nil }
             
             let section = self.sections[section]
-            let layoutSection = section.layoutSection(for: self.ui.collectionView)
+            let layoutSection = section.layoutSection(collectionView: self.ui.collectionView)
             
             layoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, contentOffset, environment) in
                 self?.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
@@ -43,7 +43,7 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     
     // MARK: - Public Methods.
     
-    open func handleLayoutChanges(in section: Section, visibleItems: [NSCollectionLayoutVisibleItem], contentOffset: CGPoint, environment: NSCollectionLayoutEnvironment) {
+    open func handleLayoutChanges(in section: LayoutSection, visibleItems: [NSCollectionLayoutVisibleItem], contentOffset: CGPoint, environment: NSCollectionLayoutEnvironment) {
         
     }
     
@@ -58,11 +58,11 @@ open class CollectionViewController<View: CollectionBasedView, Section: Groundwo
     }
     
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections[section].numberOfItems(in: collectionView)
+        return sections[section].numberOfItems()
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return sections[indexPath.section].cellForItemAt(at: indexPath, in: collectionView)
+        return sections[indexPath.section].cell(collectionView: collectionView, indexPath: indexPath)
     }
     
 }

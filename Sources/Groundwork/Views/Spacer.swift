@@ -1,6 +1,6 @@
 import UIKit
 
-public class Spacer: UIView {
+public class SpacerView: UIView {
     
     // MARK: - Injected Properties.
     
@@ -26,7 +26,7 @@ public class Spacer: UIView {
     
     // MARK: - Initialization.
     
-    public init(w: CGFloat? = nil, h: CGFloat? = nil, then completion: ((Spacer) -> Void)? = nil) {
+    public init(w: CGFloat? = nil, h: CGFloat? = nil, then completion: ((SpacerView) -> Void)? = nil) {
         self.width = w
         self.height = h
         super.init(frame: .zero)
