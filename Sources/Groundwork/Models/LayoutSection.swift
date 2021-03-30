@@ -1,6 +1,13 @@
 import UIKit
 
 open class LayoutSection {
+    
+    // MARK: - Initialization.
+    
+    public init() {}
+    
+    // MARK: - Public Methods.
+    
     open func numberOfItems() -> Int {
         return 1
     }
