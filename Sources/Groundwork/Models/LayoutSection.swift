@@ -2,6 +2,10 @@ import UIKit
 
 open class LayoutSection {
     
+    // MARK: - Properties.
+    
+    public var decorationItems: [NSCollectionLayoutDecorationItem] = []
+    
     // MARK: - Initialization.
     
     public init() {}
@@ -34,11 +38,7 @@ open class LayoutSection {
     open func sectionInsets(collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
         return .zero
     }
-    
-    open func decorationItems() -> [NSCollectionLayoutDecorationItem] {
-        return []
-    }
-    
+        
     open func layoutGroup(collectionView: UICollectionView) -> NSCollectionLayoutGroup {
         let itemSize = itemSize(collectionView: collectionView)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -53,7 +53,7 @@ open class LayoutSection {
     open func layoutSection(collectionView: UICollectionView) -> NSCollectionLayoutSection {
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup(collectionView: collectionView))
         layoutSection.contentInsets = sectionInsets(collectionView: collectionView)
-        layoutSection.decorationItems = decorationItems()
+        layoutSection.decorationItems = decorationItems
         
         switch scrollDirection(collectionView: collectionView) {
         case .horizontal:
