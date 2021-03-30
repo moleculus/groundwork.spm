@@ -14,7 +14,7 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
             guard let self = self else { return nil }
             
             let section = self.sections[section]
-            let layoutSection = section.layoutSection(collectionView: self.ui.collectionView)
+            let layoutSection = section.layoutSection(in: self.ui.collectionView)
             
             layoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, contentOffset, environment) in
                 self?.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
@@ -62,7 +62,7 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return sections[indexPath.section].cell(collectionView: collectionView, indexPath: indexPath)
+        return sections[indexPath.section].cell(for: collectionView, at: indexPath)
     }
     
 }

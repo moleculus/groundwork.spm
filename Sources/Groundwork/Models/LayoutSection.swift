@@ -1,60 +1,15 @@
 import UIKit
 
-public protocol ReusableViewDataSource {
-    associatedtype UI: UIView
+public protocol LayoutSection: LayoutSectionDataSource, LayoutSectionDelegate {
+    func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup
+    func layoutSection(in collectionView: UICollectionView) -> NSCollectionLayoutSection
 }
 
-open class LayoutSection: ReusableViewDataSource {
-    
-    public typealias UI = UIView
-    
-    // MARK: - Properties.
-    
-    public var backgroundColor: UIColor = .clear
-        
-    // MARK: - Initialization.
-    
-    public init() {}
-    
-    // MARK: - Public Methods.
-    
-    open func numberOfItems() -> Int {
-        return 1
-    }
-
-    open func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.dequeue(reusableView: UI.self, for: indexPath) { [weak self] in
-            self?.render(ui: $0, at: indexPath)
-        }
-    }
-    
-    open func render(ui: UI, at indexPath: IndexPath) {
-        
-    }
-    
-    open func scrollDirection(collectionView: UICollectionView) -> UICollectionView.ScrollDirection {
-        return .vertical
-    }
-    
-    open func itemSize(collectionView: UICollectionView) -> NSCollectionLayoutSize {
-        return NSCollectionLayoutSize(
-            widthDimension: .absolute(collectionView.bounds.width),
-            heightDimension: .estimated(0)
-        )
-    }
-    
-    open func itemInsets(collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
-        return .zero
-    }
-    
-    open func sectionInsets(collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
-        return .zero
-    }
-        
-    open func layoutGroup(collectionView: UICollectionView) -> NSCollectionLayoutGroup {
-        let itemSize = itemSize(collectionView: collectionView)
+extension LayoutSection {
+    public func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup {
+        let itemSize = itemSize(in: collectionView)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = itemInsets(collectionView: collectionView)
+        item.contentInsets = itemInsets(in: collectionView)
         
         return NSCollectionLayoutGroup.vertical(
             layoutSize: itemSize,
@@ -62,16 +17,12 @@ open class LayoutSection: ReusableViewDataSource {
         )
     }
     
-    open func decorationItems(collectionView: UICollectionView) -> [NSCollectionLayoutDecorationItem] {
-        return []
-    }
-    
-    open func layoutSection(collectionView: UICollectionView) -> NSCollectionLayoutSection {
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup(collectionView: collectionView))
-        layoutSection.contentInsets = sectionInsets(collectionView: collectionView)
-        layoutSection.decorationItems = decorationItems(collectionView: collectionView)
+    public func layoutSection(in collectionView: UICollectionView) -> NSCollectionLayoutSection {
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup(in: collectionView))
+        layoutSection.contentInsets = sectionInsets(in: collectionView)
+        layoutSection.decorationItems = decorationItems()
         
-        switch scrollDirection(collectionView: collectionView) {
+        switch scrollDirection() {
         case .horizontal:
             layoutSection.orthogonalScrollingBehavior = .groupPaging
         case .vertical:
@@ -81,5 +32,42 @@ open class LayoutSection: ReusableViewDataSource {
         }
         
         return layoutSection
+    }
+}
+
+public protocol LayoutSectionDataSource {
+    func numberOfItems() -> Int
+    func cell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell
+    func decorationItems() -> [NSCollectionLayoutDecorationItem]
+}
+
+extension LayoutSectionDataSource {
+    public func numberOfItems() -> Int {
+        return 1
+    }
+        
+    public func decorationItems() -> [NSCollectionLayoutDecorationItem] {
+        return []
+    }
+}
+
+public protocol LayoutSectionDelegate {
+    func scrollDirection() -> UICollectionView.ScrollDirection
+    func itemSize(in collectionView: UICollectionView) -> NSCollectionLayoutSize
+    func itemInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
+    func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
+}
+
+extension LayoutSectionDelegate {
+    public func scrollDirection() -> UICollectionView.ScrollDirection {
+        return .vertical
+    }
+    
+    public func itemInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
+        return .zero
+    }
+    
+    public func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
+        return .zero
     }
 }
