@@ -30,6 +30,10 @@ open class LayoutSection {
         fatalError()
     }
     
+    open func itemInsets() -> NSDirectionalEdgeInsets {
+        return .zero
+    }
+    
     open func groupInterItemSpacing() -> NSCollectionLayoutSpacing? {
         return nil
     }
@@ -49,6 +53,7 @@ open class LayoutSection {
     open func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup {
         let itemSize = self.itemSize(in: collectionView)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = itemInsets()
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: itemSize,
