@@ -7,7 +7,7 @@ public protocol LayoutSection: LayoutSectionDataSource, LayoutSectionDelegate {
 
 extension LayoutSection {
     public func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup {
-        let itemSize = itemSize(in: collectionView)
+        let itemSize = self.itemSize(in: collectionView)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = itemInsets(in: collectionView)
         
