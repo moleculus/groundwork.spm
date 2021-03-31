@@ -11,10 +11,13 @@ extension LayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = itemInsets(in: collectionView)
         
-        return NSCollectionLayoutGroup.vertical(
+        let group = NSCollectionLayoutGroup.vertical(
             layoutSize: itemSize,
             subitems: [item]
         )
+        
+        group.contentInsets = groupInsets(in: collectionView)
+        return group
     }
     
     public func layoutSection(in collectionView: UICollectionView) -> NSCollectionLayoutSection {
@@ -55,6 +58,7 @@ public protocol LayoutSectionDelegate {
     func scrollDirection() -> UICollectionView.ScrollDirection
     func itemSize(in collectionView: UICollectionView) -> NSCollectionLayoutSize
     func itemInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
+    func groupInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
     func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets
 }
 
@@ -64,6 +68,10 @@ extension LayoutSectionDelegate {
     }
     
     public func itemInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
+        return .zero
+    }
+    
+    func groupInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
         return .zero
     }
     
