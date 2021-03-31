@@ -1,48 +1,52 @@
 import UIKit
 
-public class LayoutSection {
+open class LayoutSection {
+    
+    // MARK: - Initialization.
+    
+    public init() {}
             
     // MARK: - DataSource.
     
-    public func numberOfItems() -> Int {
+    open func numberOfItems() -> Int {
         return 1
     }
     
-    public func cell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+    open func cell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         fatalError()
     }
     
-    public func decorationItems() -> [NSCollectionLayoutDecorationItem] {
+    open func decorationItems() -> [NSCollectionLayoutDecorationItem] {
         return []
     }
     
     // MARK: - Layout.
     
-    public func scrollDirection() -> UICollectionView.ScrollDirection {
+    open func scrollDirection() -> UICollectionView.ScrollDirection {
         return .vertical
     }
     
-    public func itemSize(in collectionView: UICollectionView) -> NSCollectionLayoutSize {
+    open func itemSize(in collectionView: UICollectionView) -> NSCollectionLayoutSize {
         fatalError()
     }
     
-    public func groupInterItemSpacing() -> NSCollectionLayoutSpacing? {
+    open func groupInterItemSpacing() -> NSCollectionLayoutSpacing? {
         return nil
     }
     
-    public func groupEdgeSpacing() -> NSCollectionLayoutEdgeSpacing? {
+    open func groupEdgeSpacing() -> NSCollectionLayoutEdgeSpacing? {
         return nil
     }
     
-    public func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
+    open func sectionInsets(in collectionView: UICollectionView) -> NSDirectionalEdgeInsets {
         return .zero
     }
     
-    public func sectionInterGroupSpacing() -> CGFloat {
+    open func sectionInterGroupSpacing() -> CGFloat {
         return 0
     }
     
-    public func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup {
+    open func layoutGroup(in collectionView: UICollectionView) -> NSCollectionLayoutGroup {
         let itemSize = self.itemSize(in: collectionView)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -57,7 +61,7 @@ public class LayoutSection {
         return group
     }
     
-    public func layoutSection(in collectionView: UICollectionView) -> NSCollectionLayoutSection {
+    open func layoutSection(in collectionView: UICollectionView) -> NSCollectionLayoutSection {
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup(in: collectionView))
         layoutSection.contentInsets = sectionInsets(in: collectionView)
         layoutSection.decorationItems = decorationItems()
