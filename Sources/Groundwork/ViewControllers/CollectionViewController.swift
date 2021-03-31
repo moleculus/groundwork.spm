@@ -16,9 +16,9 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
             let section = self.sections[section]
             let layoutSection = section.layoutSection(in: self.ui.collectionView)
             
-//            layoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, contentOffset, environment) in
-//                self?.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
-//            }
+            layoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, contentOffset, environment) in
+                self?.handleLayoutChanges(in: section, visibleItems: visibleItems, contentOffset: contentOffset, environment: environment)
+            }
             
             return layoutSection
         })
