@@ -1,6 +1,6 @@
 import UIKit
 
-open class LayoutSection {
+open class LayoutSection<UI: UIView> {
     
     // MARK: - Initialization.
     
@@ -8,12 +8,22 @@ open class LayoutSection {
             
     // MARK: - DataSource.
     
+    public func registerReusableView(in collectionView: UICollectionView) {
+        collectionView.register(reusableView: UI.self)
+    }
+    
     open func numberOfItems() -> Int {
         return 1
     }
     
     open func cell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
+        collectionView.dequeue(reusableView: UI.self, for: indexPath) { [weak self] in
+            self?.render($0, at: indexPath)
+        }
+    }
+    
+    open func render(_ ui: UI, at indexPath: IndexPath) {
+        
     }
     
     open func decorationItems() -> [NSCollectionLayoutDecorationItem] {
