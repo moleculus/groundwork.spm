@@ -4,18 +4,9 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
     
     // MARK: - Properties.
     
+    public var sections: [LayoutSection] = []
     public var biggestTopSafeAreaInset: CGFloat = 0
     
-    // MARK: - Observed Properties.
-    
-    public var sections: [LayoutSection<UIView>] = [] {
-        didSet {
-            for section in sections {
-                section.registerReusableView(in: ui.collectionView)
-            }
-        }
-    }
-        
     // MARK: - Computed Properties.
     
     open var collectionViewLayout: UICollectionViewLayout {
@@ -52,7 +43,7 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
     
     // MARK: - Public Methods.
     
-    open func handleLayoutChanges(in section: LayoutSection<UIView>, visibleItems: [NSCollectionLayoutVisibleItem], contentOffset: CGPoint, environment: NSCollectionLayoutEnvironment) {
+    open func handleLayoutChanges(in section: LayoutSection, visibleItems: [NSCollectionLayoutVisibleItem], contentOffset: CGPoint, environment: NSCollectionLayoutEnvironment) {
         
     }
     
