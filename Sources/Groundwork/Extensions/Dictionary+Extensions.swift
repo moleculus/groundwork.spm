@@ -8,4 +8,11 @@ extension Dictionary where Key == NSAttributedString.Key, Value == Any {
             NSAttributedString.Key.foregroundColor: textColor
         ]
     }
+    
+    public static func links(withColor color: UIColor) -> [NSAttributedString.Key: Any] {
+        return [
+            .foregroundColor: color,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+    }
 }
