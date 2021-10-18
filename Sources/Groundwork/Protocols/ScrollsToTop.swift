@@ -1,5 +1,5 @@
 import UIKit
 
 public protocol ScrollsToTop {
-    func scrollToTop(animated: Bool)
+    func scrollToTop(animated: Bool) -> Bool
 }

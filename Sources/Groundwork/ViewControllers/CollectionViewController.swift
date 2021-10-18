@@ -47,8 +47,14 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
         
     }
     
-    open func scrollToTop(animated: Bool) {
-        ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
+    open func scrollToTop(animated: Bool) -> Bool {
+        if ui.collectionView.contentOffset.y != -biggestTopSafeAreaInset {
+            return false
+        }
+        else {
+            ui.collectionView.setContentOffset(CGPoint(x: 0, y: -biggestTopSafeAreaInset), animated: animated)
+            return true
+        }
     }
     
     // MARK: - UICollectionViewDataSource.
