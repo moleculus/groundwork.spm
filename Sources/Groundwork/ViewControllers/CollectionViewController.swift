@@ -48,7 +48,7 @@ open class CollectionViewController<View: CollectionBasedView>: ViewController<V
     }
     
     open func scrollToTop(animated: Bool) -> Bool {
-        if ui.collectionView.contentOffset.y != -biggestTopSafeAreaInset {
+        if ui.collectionView.contentOffset.y == -biggestTopSafeAreaInset {
             return false
         }
         else {
