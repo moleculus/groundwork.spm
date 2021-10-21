@@ -13,6 +13,8 @@ open class CollectionBasedView: UIView {
         $0.backgroundColor = .clear
     }
     
+    public let refreshControl = UIRefreshControl()
+    
     // MARK: - Initialization.
     
     public override init(frame: CGRect) {
